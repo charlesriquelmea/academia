@@ -241,7 +241,7 @@ export default function CheckoutPage() {
                         <p className="font-semibold text-sm">{course.title}</p>
                         <p className="text-xs text-muted-foreground mt-1">{course.level}</p>
                       </div>
-                      <p className="font-semibold text-sm flex-shrink-0">${course.price}</p>
+                      <p className="font-semibold text-sm shrink-0">${course.price}</p>
                     </div>
 
                     <div className="space-y-2 pt-4">

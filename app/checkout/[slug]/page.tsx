@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Head from 'next/head'
 import { cursos } from '@/lib/mock-data-product'
 import { formatCLP, isValidEmail, isValidName } from '@/lib/utils-product'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
@@ -51,9 +51,11 @@ export default function CheckoutPage() {
     }
   }
 
+  const router = useRouter()
+
   const handlePagar = () => {
     // Simulación de pago
-    window.location.href = `/checkout/success?nombre=${formData.nombre}&email=${formData.email}&curso=${slug}`
+    router.push(`/checkout/success?nombre=${formData.nombre}&email=${formData.email}&curso=${slug}`)
   }
 
   const tieneErrores = Object.keys(errores).length > 0
