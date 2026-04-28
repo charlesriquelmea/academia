@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
@@ -33,7 +33,9 @@ export default function CheckoutPage() {
     return (
       <div className="min-h-screen bg-background flex flex-col">
         <Navbar />
-        <main className="flex-1 flex items-center justify-center py-20 px-4">
+
+        <Suspense fallback={<div className="flex-1 flex items-center justify-center">Cargando...</div>}>
+          <main className="flex-1 flex items-center justify-center py-20 px-4">
           <div className="text-center">
             <h1 className="font-serif text-2xl font-bold mb-4">Curso no encontrado</h1>
             <Link href="/catalogo">
@@ -43,7 +45,8 @@ export default function CheckoutPage() {
               </Button>
             </Link>
           </div>
-        </main>
+        </main> 
+        </Suspense>
         <Footer />
       </div>
     )
@@ -98,10 +101,10 @@ export default function CheckoutPage() {
                 <div key={idx} className="flex items-center gap-3">
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold transition-colors ${step > idx + 1
+                      ? 'bg-primary text-primary-foreground'
+                      : step === idx + 1
                         ? 'bg-primary text-primary-foreground'
-                        : step === idx + 1
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-muted text-muted-foreground'
+                        : 'bg-muted text-muted-foreground'
                       }`}
                   >
                     {step > idx + 1 ? <CheckCircle className="w-5 h-5" /> : idx + 1}

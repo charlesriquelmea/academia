@@ -22,12 +22,12 @@ export default function CartPage() {
           <h1 className="font-serif text-4xl font-bold mb-12">Tu Carrito</h1>
 
           <div className="text-center py-20">
-            <Empty
-              icon={ShoppingCart}
-              title="Tu carrito está vacío"
-              description="Explora nuestro catálogo y agrega cursos para empezar"
-            />
-            
+            <div className="flex flex-col items-center gap-4">
+              <ShoppingCart className="w-12 h-12 text-muted-foreground" />
+              <h2 className="font-serif text-xl font-semibold">Tu carrito está vacío</h2>
+              <p className="text-muted-foreground">Explora nuestro catálogo y agrega cursos para empezar</p>
+            </div>
+
             <Link href="/catalogo" className="mt-8">
               <Button className="gap-2">
                 Explorar Cursos
