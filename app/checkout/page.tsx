@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { Button } from '@/components/ui/button'
@@ -54,9 +54,11 @@ export default function CheckoutPage() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+  const router = useRouter();
+
   const handleNextStep = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (step === 1) {
       // Validate email step
       if (!formData.email || !formData.firstName || !formData.lastName) {
@@ -69,7 +71,7 @@ export default function CheckoutPage() {
       setLoading(true)
       // Simulate payment processing
       await new Promise((resolve) => setTimeout(resolve, 2000))
-      window.location.href = `/confirmacion?status=success&email=${formData.email}`
+      router.push(`/confirmacion?status=success&email=${formData.email}`);
     }
   }
 
@@ -95,13 +97,12 @@ export default function CheckoutPage() {
               {steps.map((stepName, idx) => (
                 <div key={idx} className="flex items-center gap-3">
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold transition-colors ${
-                      step > idx + 1
+                    className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold transition-colors ${step > idx + 1
                         ? 'bg-primary text-primary-foreground'
                         : step === idx + 1
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted text-muted-foreground'
-                    }`}
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted text-muted-foreground'
+                      }`}
                   >
                     {step > idx + 1 ? <CheckCircle className="w-5 h-5" /> : idx + 1}
                   </div>
