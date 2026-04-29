@@ -22,7 +22,7 @@ export function Navbar() {
           <Link href="/catalogo" className="text-sm font-medium hover:text-primary transition-colors">
             Catálogo
           </Link>
-          <Link href="#" className="text-sm font-medium hover:text-primary transition-colors">
+          <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
             Sobre mí
           </Link>
         </div>

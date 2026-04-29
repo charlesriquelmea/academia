@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
@@ -13,7 +13,7 @@ import Link from 'next/link'
 
 const steps = ['Información', 'Pago']
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const searchParams = useSearchParams()
   const courseId = searchParams.get('course')
   const course = courses.find((c) => c.id === courseId)
@@ -33,7 +33,9 @@ export default function CheckoutPage() {
     return (
       <div className="min-h-screen bg-background flex flex-col">
         <Navbar />
-        <main className="flex-1 flex items-center justify-center py-20 px-4">
+
+        <Suspense fallback={<div className="flex-1 flex items-center justify-center">Cargando...</div>}>
+          <main className="flex-1 flex items-center justify-center py-20 px-4">
           <div className="text-center">
             <h1 className="font-serif text-2xl font-bold mb-4">Curso no encontrado</h1>
             <Link href="/catalogo">
@@ -43,7 +45,8 @@ export default function CheckoutPage() {
               </Button>
             </Link>
           </div>
-        </main>
+        </main> 
+        </Suspense>
         <Footer />
       </div>
     )
@@ -98,10 +101,10 @@ export default function CheckoutPage() {
                 <div key={idx} className="flex items-center gap-3">
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold transition-colors ${step > idx + 1
+                      ? 'bg-primary text-primary-foreground'
+                      : step === idx + 1
                         ? 'bg-primary text-primary-foreground'
-                        : step === idx + 1
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-muted text-muted-foreground'
+                        : 'bg-muted text-muted-foreground'
                       }`}
                   >
                     {step > idx + 1 ? <CheckCircle className="w-5 h-5" /> : idx + 1}
@@ -241,7 +244,7 @@ export default function CheckoutPage() {
                         <p className="font-semibold text-sm">{course.title}</p>
                         <p className="text-xs text-muted-foreground mt-1">{course.level}</p>
                       </div>
-                      <p className="font-semibold text-sm flex-shrink-0">${course.price}</p>
+                      <p className="font-semibold text-sm shrink-0">${course.price}</p>
                     </div>
 
                     <div className="space-y-2 pt-4">
@@ -273,5 +276,13 @@ export default function CheckoutPage() {
 
       <Footer />
     </div>
+  )
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Cargando...</div>}>
+      <CheckoutContent />
+    </Suspense>
   )
 }

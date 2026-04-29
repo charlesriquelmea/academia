@@ -1,12 +1,13 @@
 'use client'
 
+import { Suspense } from 'react'
 import Head from 'next/head'
 import { Button } from '@/components/ui/button'
 import { CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
-export default function SuccessPage() {
+function SuccessContent() {
   const searchParams = useSearchParams()
   const nombre = searchParams.get('nombre')
   const email = searchParams.get('email')
@@ -56,5 +57,13 @@ export default function SuccessPage() {
         </div>
       </div>
     </>
+  )
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Cargando...</div>}>
+      <SuccessContent />
+    </Suspense>
   )
 }
