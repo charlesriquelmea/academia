@@ -46,19 +46,19 @@ export function AboutSection() {
           {/* Right: Stats */}
           <div className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-lg p-6">
+              <div className="bg-linear-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-lg p-6">
                 <div className="text-3xl font-serif font-bold text-primary mb-2">12+</div>
                 <p className="text-sm text-foreground">Años en Tech</p>
               </div>
-              <div className="bg-gradient-to-br from-accent/10 to-accent/5 border border-accent/20 rounded-lg p-6">
+              <div className="bg-linear-to-br  from-accent/10 to-accent/5 border border-accent/20 rounded-lg p-6">
                 <div className="text-3xl font-serif font-bold text-accent mb-2">9</div>
                 <p className="text-sm text-foreground">Incubaciones</p>
               </div>
-              <div className="bg-gradient-to-br from-secondary/50 to-secondary/30 border border-secondary/40 rounded-lg p-6">
+              <div className="bg-linear-to-br  from-secondary/50 to-secondary/30 border border-secondary/40 rounded-lg p-6">
                 <div className="text-3xl font-serif font-bold text-secondary-foreground mb-2">$0</div>
                 <p className="text-sm text-secondary-foreground">Capital Externo</p>
               </div>
-              <div className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-lg p-6">
+              <div className="bg-linear-to-br  from-primary/10 to-primary/5 border border-primary/20 rounded-lg p-6">
                 <div className="text-3xl font-serif font-bold text-primary mb-2">∞</div>
                 <p className="text-sm text-foreground">Resiliencia</p>
               </div>
@@ -72,7 +72,7 @@ export function AboutSection() {
               <p className="text-foreground mb-4">
                 Creo en la mentalidad autodidacta, en aprender por ósmosis, y en la tecnología como palanca de movilidad. La innovación no son "ideas bonitas" — es ejecución bajo restricciones.
               </p>
-              <p className="text-foreground font-semibold text-primary">
+              <p className="text-foreground font-semibold">
                 Internet es el mayor motor de generación de riqueza que jamás haya existido.
               </p>
             </div>

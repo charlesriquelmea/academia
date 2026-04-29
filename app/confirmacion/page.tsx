@@ -1,5 +1,6 @@
 'use client'
 
+import { Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
@@ -7,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { CheckCircle, AlertCircle, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
-export default function ConfirmacionPage() {
+function ConfirmacionContent() {
   const searchParams = useSearchParams()
   const status = searchParams.get('status') || 'error'
   const email = searchParams.get('email') || ''
@@ -125,5 +126,13 @@ export default function ConfirmacionPage() {
 
       <Footer />
     </div>
+  )
+}
+
+export default function ConfirmacionPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Cargando...</div>}>
+      <ConfirmacionContent />
+    </Suspense>
   )
 }

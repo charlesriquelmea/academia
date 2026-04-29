@@ -13,7 +13,7 @@ import Link from 'next/link'
 
 const steps = ['Información', 'Pago']
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const searchParams = useSearchParams()
   const courseId = searchParams.get('course')
   const course = courses.find((c) => c.id === courseId)
@@ -276,5 +276,13 @@ export default function CheckoutPage() {
 
       <Footer />
     </div>
+  )
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Cargando...</div>}>
+      <CheckoutContent />
+    </Suspense>
   )
 }
